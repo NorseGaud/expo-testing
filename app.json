@@ -1,41 +1,54 @@
 {
   "expo": {
-    "name": "expo-contact-bug",
-    "slug": "expo-contact-bug",
-    "version": "1.0.0",
+    "name": "repro",
+    "slug": "repro",
+    "version": "2.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "icon": "./assets/images/icon_v2.png",
+    "notification": {
+      "icon": "./assets/images/notification_icon.png",
+      "color": "#90e077"
+    },
+    "scheme": "app.onlyhumndevs.repro",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
+      "versionCode": 200,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+        "foregroundImage": "./assets/images/logo_spacing_500.png"
+      },
+      "package": "app.onlyhumndevs.repro",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.READ_CONTACTS",
+        "android.permission.WRITE_CONTACTS",
+        "android.permission.CALL_PHONE",
+        "android.permission.VIBRATE",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS",
+        "com.google.android.gms.permission.AD_ID"
+      ]
     },
     "plugins": [
-      "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#1d1d1d",
+          "image": "./assets/images/splash_v2.png",
+          "resizeMode": "contain"
+        }
+      ],
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow $(PRODUCT_NAME) to access your contacts. We never collect them or store them on our servers!"
         }
       ]
     ],
-    "experiments": {
-      "typedRoutes": true
+    "ios": {
+      "bundleIdentifier": "app.onlyhumndevs.repro"
     }
   }
 }

@@ -1,39 +1,44 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
+import { View, Button } from 'react-native';
+import * as ExpoContacts from 'expo-contacts';
+import { PermissionsAndroid } from 'react-native';
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <View>
+      <Button title="Press me" onPress={async () => {
+        try {
+          const permission = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_CONTACTS, {
+            title: 'Contacts Write Permission',
+            message: 'This app needs access to your contacts to update them.',
+            buttonPositive: 'OK'
+          })
+          if (permission === PermissionsAndroid.RESULTS.GRANTED) {
+            const { data: contacts } = await ExpoContacts.getContactsAsync({
+              fields: [
+                ExpoContacts.Fields.Emails,
+                ExpoContacts.Fields.Image,
+                ExpoContacts.Fields.ID,
+                ExpoContacts.Fields.PhoneNumbers,
+                ExpoContacts.Fields.FirstName,
+                ExpoContacts.Fields.LastName,
+                ExpoContacts.Fields.MiddleName,
+                ExpoContacts.Fields.NameSuffix,
+                ExpoContacts.Fields.Birthday
+              ]
+            });
+            if (!contacts || contacts?.length === 0) return
+            const contact = contacts[0]
+            if (!contact) return
+            console.log('[updateDeviceContact::contact]', contact)
+            // await ExpoContacts.updateContactAsync({
+            //   id: contact.id,
+            //   [ExpoContacts.Fields.Name]: contact.name,
+            //   [ExpoContacts.Fields.ContactType]: contact.contactType
+            // })
+          }
+        } catch (error: any) {
+          console.error('error updating contact: ', error.message)
+        }
+      }} />
+    </View>
   );
 }
