@@ -1,6 +1,7 @@
 import { View, Button } from 'react-native';
 import * as ExpoContacts from 'expo-contacts';
 import { PermissionsAndroid } from 'react-native';
+
 export default function RootLayout() {
   return (
     <View>
@@ -11,6 +12,8 @@ export default function RootLayout() {
             message: 'This app needs access to your contacts to update them.',
             buttonPositive: 'OK'
           })
+          const { status } = await ExpoContacts.requestPermissionsAsync();
+          if (status !== 'granted') return
           if (permission === PermissionsAndroid.RESULTS.GRANTED) {
             const { data: contacts } = await ExpoContacts.getContactsAsync({
               fields: [
@@ -29,11 +32,11 @@ export default function RootLayout() {
             const contact = contacts[0]
             if (!contact) return
             console.log('[updateDeviceContact::contact]', contact)
-            // await ExpoContacts.updateContactAsync({
-            //   id: contact.id,
-            //   [ExpoContacts.Fields.Name]: contact.name,
-            //   [ExpoContacts.Fields.ContactType]: contact.contactType
-            // })
+            await ExpoContacts.updateContactAsync({
+              id: contact.id,
+              [ExpoContacts.Fields.Name]: contact.name,
+              [ExpoContacts.Fields.ContactType]: contact.contactType
+            })
           }
         } catch (error: any) {
           console.error('error updating contact: ', error.message)
