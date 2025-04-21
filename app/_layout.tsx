@@ -17,26 +17,56 @@ export default function RootLayout() {
           if (permission === PermissionsAndroid.RESULTS.GRANTED) {
             const { data: contacts } = await ExpoContacts.getContactsAsync({
               fields: [
+                ExpoContacts.Fields.Name,
                 ExpoContacts.Fields.Emails,
-                ExpoContacts.Fields.Image,
                 ExpoContacts.Fields.ID,
                 ExpoContacts.Fields.PhoneNumbers,
                 ExpoContacts.Fields.FirstName,
                 ExpoContacts.Fields.LastName,
                 ExpoContacts.Fields.MiddleName,
                 ExpoContacts.Fields.NameSuffix,
-                ExpoContacts.Fields.Birthday
+                ExpoContacts.Fields.Birthday,
+                ExpoContacts.Fields.IsFavorite,
+                ExpoContacts.Fields.ContactType
               ]
             });
             if (!contacts || contacts?.length === 0) return
             const contact = contacts[0]
             if (!contact) return
-            console.log('[updateDeviceContact::contact]', contact)
+            console.log('[updateDeviceContact::contact PRE]', contact)
             await ExpoContacts.updateContactAsync({
               id: contact.id,
               [ExpoContacts.Fields.Name]: contact.name,
-              [ExpoContacts.Fields.ContactType]: contact.contactType
+              [ExpoContacts.Fields.FirstName]: contact.firstName,
+              [ExpoContacts.Fields.ContactType]: contact.contactType,
+              [ExpoContacts.Fields.IsFavorite]: false,
+              [ExpoContacts.Fields.PhoneNumbers]: contact.phoneNumbers,
+              [ExpoContacts.Fields.Emails]: contact.emails,
+              [ExpoContacts.Fields.Birthday]: contact.birthday,
+              [ExpoContacts.Fields.NameSuffix]: contact.nameSuffix,
+              [ExpoContacts.Fields.MiddleName]: contact.middleName,
+              [ExpoContacts.Fields.LastName]: contact.lastName,
+              [ExpoContacts.Fields.Company]: contact.company,
+              [ExpoContacts.Fields.JobTitle]: contact.jobTitle,
+              [ExpoContacts.Fields.Nickname]: contact.nickname,
+              [ExpoContacts.Fields.SocialProfiles]: contact.socialProfiles,
             })
+            const { data: contacts2 } = await ExpoContacts.getContactsAsync({
+              fields: [
+                ExpoContacts.Fields.Name,
+                ExpoContacts.Fields.Emails,
+                ExpoContacts.Fields.ID,
+                ExpoContacts.Fields.PhoneNumbers,
+                ExpoContacts.Fields.FirstName,
+                ExpoContacts.Fields.LastName,
+                ExpoContacts.Fields.MiddleName,
+                ExpoContacts.Fields.NameSuffix,
+                ExpoContacts.Fields.Birthday,
+                ExpoContacts.Fields.IsFavorite,
+                ExpoContacts.Fields.ContactType
+              ]
+            });
+            console.log('[updateDeviceContact::contacts GET]', contacts2.find(contact => contact.id === contact.id))
           }
         } catch (error: any) {
           console.error('error updating contact: ', error.message)
