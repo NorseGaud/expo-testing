@@ -31,7 +31,6 @@ export default function RootLayout() {
             await ExpoContacts.updateContactAsync({
               id: contact.id,
               [ExpoContacts.Fields.Name]: contact.name,
-              [ExpoContacts.Fields.FirstName]: "Charles",
               [ExpoContacts.Fields.ContactType]: contact.contactType,
               [ExpoContacts.Fields.IsFavorite]: true,
             })
