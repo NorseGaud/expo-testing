@@ -28,28 +28,19 @@ export default function RootLayout() {
             if (!contact) { console.log('[updateDeviceContact::contact NOT FOUND]'); return }
             // if (!contact) { console.log('[updateDeviceContact::contact NOT FOUND]'); return }
             console.log('[updateDeviceContact::contact PRE]', contact)
+            if (!contact.id) return;
             await ExpoContacts.updateContactAsync({
               id: contact.id,
-              [ExpoContacts.Fields.Name]: contact.name,
-              [ExpoContacts.Fields.ContactType]: contact.contactType,
               [ExpoContacts.Fields.IsFavorite]: true,
             })
-            // const { data: contacts2 } = await ExpoContacts.getContactsAsync({
-            //   fields: [
-            //     ExpoContacts.Fields.Name,
-            //     ExpoContacts.Fields.Emails,
-            //     ExpoContacts.Fields.ID,
-            //     ExpoContacts.Fields.PhoneNumbers,
-            //     ExpoContacts.Fields.FirstName,
-            //     ExpoContacts.Fields.LastName,
-            //     ExpoContacts.Fields.MiddleName,
-            //     ExpoContacts.Fields.NameSuffix,
-            //     ExpoContacts.Fields.Birthday,
-            //     ExpoContacts.Fields.IsFavorite,
-            //     ExpoContacts.Fields.ContactType
-            //   ]
-            // });
-            // console.log('[updateDeviceContact::contacts GET]', contacts2.find(contact => contact.firstName == "Charles E"))
+            const { data: contacts2 } = await ExpoContacts.getContactsAsync({
+              fields: [
+                ExpoContacts.Fields.Name,
+                ExpoContacts.Fields.ID,
+                ExpoContacts.Fields.IsFavorite,
+              ]
+            });
+            console.log('[updateDeviceContact::contacts GET]', contacts2.find(contact => contact.firstName == "Charles"))
           }
         } catch (error: any) {
           console.error('error updating contact: ', error.message)
