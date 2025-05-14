@@ -35,12 +35,11 @@ export default function RootLayout() {
             })
             const { data: contacts2 } = await ExpoContacts.getContactsAsync({
               fields: [
-                ExpoContacts.Fields.Name,
                 ExpoContacts.Fields.ID,
                 ExpoContacts.Fields.IsFavorite,
               ]
             });
-            console.log('[updateDeviceContact::contacts GET]', contacts2.find(contact => contact.firstName == "Charles"))
+            console.log('[updateDeviceContact::contacts GET]', contacts2.find(contact => contact.firstName == "Charles E"))
           }
         } catch (error: any) {
           console.error('error updating contact: ', error.message)
