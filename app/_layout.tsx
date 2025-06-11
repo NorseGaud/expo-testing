@@ -1,50 +1,24 @@
-import { View, Button } from 'react-native';
-import * as ExpoContacts from 'expo-contacts';
-import { PermissionsAndroid } from 'react-native';
+import { View, Text } from 'react-native';
+import Counter from '@/components/Counter';
+import { useState } from 'react';
 
 export default function RootLayout() {
+
+  const [countToNotify, setCountToNotify] = useState(3);    
+  const handleNumberOfMems = (count: number) => {
+    console.log('count', count);
+    setCountToNotify(count);
+  };
+
   return (
-    <View>
-      <Button title="Press me" onPress={async () => {
-        try {
-          const permission = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_CONTACTS, {
-            title: 'Contacts Write Permission',
-            message: 'This app needs access to your contacts to update them.',
-            buttonPositive: 'OK'
-          })
-          const { status } = await ExpoContacts.requestPermissionsAsync();
-          if (status !== 'granted') return
-          if (permission === PermissionsAndroid.RESULTS.GRANTED) {
-            const { data: contacts } = await ExpoContacts.getContactsAsync({
-              fields: [
-              ]
-            });
-            if (!contacts || contacts?.length === 0) return
-            console.log('[updateDeviceContact::contacts]', contacts)
-            const contact = contacts.find(contact => {
-              console.log('[updateDeviceContact::contact]', contact)
-              return contact.lastName == "Larota"
-            })
-            if (!contact) { console.log('[updateDeviceContact::contact NOT FOUND]'); return }
-            // if (!contact) { console.log('[updateDeviceContact::contact NOT FOUND]'); return }
-            console.log('[updateDeviceContact::contact PRE]', contact)
-            if (!contact.id) return;
-            await ExpoContacts.updateContactAsync({
-              id: contact.id,
-              [ExpoContacts.Fields.IsFavorite]: true,
-            })
-            const { data: contacts2 } = await ExpoContacts.getContactsAsync({
-              fields: [
-                ExpoContacts.Fields.ID,
-                ExpoContacts.Fields.IsFavorite,
-              ]
-            });
-            console.log('[updateDeviceContact::contacts GET]', contacts2.find(contact => contact.firstName == "Charles E"))
-          }
-        } catch (error: any) {
-          console.error('error updating contact: ', error.message)
-        }
-      }} />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Demo App</Text>
+      <Counter
+				id="contact-settings-counter"
+				onIncrease={() => handleNumberOfMems(Number(countToNotify) + 1)}
+				onDecrease={() => handleNumberOfMems(Number(countToNotify) - 1)}
+				count={countToNotify}
+			/>
     </View>
   );
 }

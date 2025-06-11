@@ -1,0 +1,6 @@
+appId: app.onlyhumndevs.repro
+---
+
+- assertVisible:
+    id: "contact-settings-counter-count"
+    text: 3

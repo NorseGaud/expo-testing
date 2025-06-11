@@ -32,20 +32,6 @@
       ]
     },
     "plugins": [
-      [
-        "expo-splash-screen",
-        {
-          "backgroundColor": "#1d1d1d",
-          "image": "./assets/images/splash_v2.png",
-          "resizeMode": "contain"
-        }
-      ],
-      [
-        "expo-contacts",
-        {
-          "contactsPermission": "Allow $(PRODUCT_NAME) to access your contacts. We never collect them or store them on our servers!"
-        }
-      ],
       "expo-router"
     ],
     "ios": {
