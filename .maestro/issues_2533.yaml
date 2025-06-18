@@ -1,6 +1,6 @@
-appId: app.onlyhumndevs.repro
+appId: app.maestro.expo.testing
 ---
 
 - assertVisible:
-    id: "contact-settings-counter-count"
+    id: "counter_1-count"
     text: 3

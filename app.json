@@ -1,41 +1,21 @@
 {
   "expo": {
-    "name": "repro",
-    "slug": "repro",
-    "version": "2.0.0",
+    "name": "maestro-expo-testing",
+    "slug": "maestro-expo-testing",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon_v2.png",
-    "notification": {
-      "icon": "./assets/images/notification_icon.png",
-      "color": "#90e077"
-    },
-    "scheme": "app.onlyhumndevs.repro",
+    "scheme": "app.maestro.expo.testing",
     "userInterfaceStyle": "automatic",
     "android": {
       "versionCode": 200,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo_spacing_500.png"
-      },
-      "package": "app.onlyhumndevs.repro",
-      "permissions": [
-        "android.permission.INTERNET",
-        "android.permission.READ_CONTACTS",
-        "android.permission.WRITE_CONTACTS",
-        "android.permission.CALL_PHONE",
-        "android.permission.VIBRATE",
-        "android.permission.RECEIVE_BOOT_COMPLETED",
-        "android.permission.SCHEDULE_EXACT_ALARM",
-        "android.permission.USE_EXACT_ALARM",
-        "android.permission.POST_NOTIFICATIONS",
-        "android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS",
-        "com.google.android.gms.permission.AD_ID"
-      ]
+      "package": "app.maestro.expo.testing",
+      "edgeToEdgeEnabled": true
     },
     "plugins": [
       "expo-router"
     ],
     "ios": {
-      "bundleIdentifier": "app.onlyhumndevs.repro"
+      "bundleIdentifier": "app.maestro.expo.testing"
     }
   }
 }
