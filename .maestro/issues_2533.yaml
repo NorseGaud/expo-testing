@@ -1,4 +1,6 @@
 appId: app.maestro.expo.testing
+onFlowComplete:
+  - tapOn: Back
 ---
 
 - assertVisible:
@@ -9,3 +11,6 @@ appId: app.maestro.expo.testing
 - assertVisible:
     text: 3
 
+- assertVisible:
+    id: counter_1-count
+    text: 3
