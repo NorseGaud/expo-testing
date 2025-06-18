@@ -1,7 +1,7 @@
 import CustomWheelPicker from '@/components/CustomWheelPicker';
 import { router } from 'expo-router';
 import React from 'react'
-import { Text, View, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 
 const WheelPickerScreen = () => {
 
@@ -17,7 +17,7 @@ const WheelPickerScreen = () => {
   const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity 
         onPress={() => router.back()}
         style={{
@@ -44,7 +44,7 @@ const WheelPickerScreen = () => {
         />
       </View>
       <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Selected: {items[selectedIndex]}</Text>
-    </SafeAreaView>
+    </View>
   );
 };
 

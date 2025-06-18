@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, SafeAreaView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 const CounterScreen = () => {
 
@@ -8,7 +8,6 @@ const CounterScreen = () => {
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: '#f5f5f5',
     },
     title: {
       fontSize: 24,
@@ -24,7 +23,7 @@ const CounterScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity 
         onPress={() => router.back()}
         style={{
@@ -68,7 +67,7 @@ const CounterScreen = () => {
               <Text style={{ fontWeight: 'bold' }}>+</Text>
           </TouchableOpacity>
         </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

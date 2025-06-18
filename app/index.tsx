@@ -1,4 +1,4 @@
-import { Text, StyleSheet, SafeAreaView } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { router } from 'expo-router';
 
 export default function HomeScreen() {
@@ -21,10 +21,10 @@ export default function HomeScreen() {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Expo Testing App</Text>
       <Text style={styles.button} onPress={() => router.push('/counter')}>Counter</Text>
       <Text style={styles.button} onPress={() => router.push('/wheel-picker')}>Wheel Picker</Text>
-    </SafeAreaView>
+    </View>
   );
 } 
