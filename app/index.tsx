@@ -24,6 +24,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container}>
       <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Expo Testing App</Text>
       <Text style={styles.button} onPress={() => router.push('/counter')}>Counter</Text>
+      <Text style={styles.button} onPress={() => router.push('/wheel-picker')}>Wheel Picker</Text>
     </SafeAreaView>
   );
 } 
