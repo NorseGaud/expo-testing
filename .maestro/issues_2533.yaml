@@ -2,5 +2,10 @@ appId: app.maestro.expo.testing
 ---
 
 - assertVisible:
-    id: "counter_1-count"
+    text: Expo Testing App
+
+- tapOn: Counter
+
+- assertVisible:
     text: 3
+
