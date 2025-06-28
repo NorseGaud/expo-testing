@@ -25,6 +25,7 @@ export default function HomeScreen() {
       <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Expo Testing App</Text>
       <Text style={styles.button} onPress={() => router.push('/counter')}>Counter</Text>
       <Text style={styles.button} onPress={() => router.push('/wheel-picker')}>Wheel Picker</Text>
+      <Text style={styles.button} onPress={() => router.push('/textinput')}>Text Input</Text>
     </View>
   );
 } 

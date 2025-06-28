@@ -1,0 +1,6 @@
+appId: app.maestro.expo.testing
+onFlowComplete:
+  - tapOn: Back
+---
+
+- assertVisible: email@address.com

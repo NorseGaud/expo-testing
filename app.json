@@ -1,21 +1,24 @@
 {
   "expo": {
-    "name": "maestro-expo-testing",
-    "slug": "maestro-expo-testing",
+    "name": "expo-testing",
+    "slug": "expo-testing",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "app.maestro.expo.testing",
+    "scheme": "app.expo-testing",
     "userInterfaceStyle": "automatic",
     "android": {
       "versionCode": 200,
-      "package": "app.maestro.expo.testing",
+      "package": "app.expo-testing",
       "edgeToEdgeEnabled": true
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "@react-native-google-signin/google-signin"
+      ],
     ],
     "ios": {
-      "bundleIdentifier": "app.maestro.expo.testing"
+      "bundleIdentifier": "app.expo-testing"
     }
   }
 }

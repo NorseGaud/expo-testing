@@ -6,7 +6,7 @@ export default function RootLayout() {
   return (
     <SafeAreaView style={{ 
       flex: 1, 
-      paddingTop: Platform.OS === 'android' ? 50 : 0,
+      paddingTop: Platform.OS === 'android' ? 40 : 0,
     }}>
       <Slot />
     </SafeAreaView>
