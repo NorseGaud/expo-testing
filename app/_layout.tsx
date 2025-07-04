@@ -12,7 +12,7 @@ const random = Math.random()
 React.useEffect(() => {
   // Listener for foregrounding the app and getting latest data
   // Note: infinite loops could happen if the function brings anything to the foreground like a permissison request dialogue, etc. Use the lastFetchTime to avoid this.
-  const subscription = AppState.addEventListener('change', async (state) => {
+  const subscription = AppState.addEventListener('change', state => {
     console.log(`AppState has come to the ${state}!`, random);
     if (
       appState.current.match(/inactive|background/) &&
