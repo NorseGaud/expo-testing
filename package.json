@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",
+    "@react-native-community/cli": "^18.0.0",
     "@types/react": "~19.1.4",
     "@types/react-test-renderer": "^19.0.0",
     "react-test-renderer": "19.0.0",
