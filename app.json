@@ -8,17 +8,23 @@
     "userInterfaceStyle": "automatic",
     "android": {
       "versionCode": 200,
-      "package": "app.expo-testing",
+      "package": "com.onlyhumndevs.expotesting",
       "edgeToEdgeEnabled": true
     },
     "plugins": [
       "expo-router",
       [
         "@react-native-google-signin/google-signin"
-      ],
+      ]
     ],
     "ios": {
       "bundleIdentifier": "app.expo-testing"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "cf284c8d-2488-4569-94d7-6188a2438dbb"
+      }
     }
   }
 }
